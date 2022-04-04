@@ -5,9 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PAY.ON Webhook Decryptor</title>
-
-    <!-- vue -->
-    <script src="https://unpkg.com/vue@3"></script>
   </head>
   <body>
     <section class="hero is-link">
@@ -42,59 +39,7 @@
       <div class="container">
         <h1 class="title is-size-5">Form</h1>
         <div id="app">
-          <div class="field">
-            <label class="label">BIP Secret</label>
-            <div class="control">
-              <input class="input" type="password" v-model="secret" />
-            </div>
-          </div>
-
-          <div class="field">
-            <div class="control">
-              <label class="label">x-authentication-tag</label>
-              <input
-                type="password"
-                class="input"
-                v-model="authenticationTag"
-              />
-            </div>
-          </div>
-
-          <div class="field">
-            <div class="control">
-              <label class="label">x-initialization-vector</label>
-              <input
-                type="password"
-                class="input"
-                v-model="initializationVector"
-              />
-            </div>
-          </div>
-
-          <div class="field">
-            <div class="control">
-              <label class="label">Encrypted Body</label>
-              <input type="password" class="input" v-model="encryptedBody" />
-            </div>
-          </div>
-
-          <div class="field">
-            <div class="control">
-              <a class="button is-warning" @click="submit">Decrypt</a>
-            </div>
-          </div>
-
-          <div class="field" v-show="decryptedBody">
-            <div class="control">
-              <textarea
-                cols="30"
-                rows="20"
-                class="textarea is-family-monospace"
-              >
-{{decryptedBody}}</textarea
-              >
-            </div>
-          </div>
+          <!-- vue here -->
         </div>
       </div>
     </section>
