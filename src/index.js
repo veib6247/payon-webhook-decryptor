@@ -1,3 +1,5 @@
+import 'bulma'
+
 const mainInstance = {
   data() {
     return {
