@@ -7,6 +7,7 @@ export default {
       initializationVector: "",
       encryptedBody: "",
       decryptedBody: "",
+      serverDecryptorScriptPath: "../php/decryptor.php",
     };
   },
 
@@ -14,7 +15,7 @@ export default {
     async submit() {
       try {
         // fetch
-        const rawResponse = await fetch("./decryptor.php", {
+        const rawResponse = await fetch(this.serverDecryptorScriptPath, {
           method: "POST",
           body: JSON.stringify({
             secret: this.secret,
@@ -25,7 +26,7 @@ export default {
         });
 
         // fullfill promise
-        const response = await rawResponse.json();
+        const response = await rawResponse.text();
 
         this.decryptedBody = response;
       } catch (error) {
