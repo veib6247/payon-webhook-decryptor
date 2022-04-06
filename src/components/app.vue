@@ -63,6 +63,7 @@ export default {
     },
   },
 
+  // preformatted thingies
   computed: {
     // formats json to string with proper line breaks and indentation to display as pretty json format in textarea
     prettyPrintResponse() {
