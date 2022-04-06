@@ -1,5 +1,13 @@
 <script>
+import Notification from "./notification.vue";
+
 export default {
+  // register component(s)
+  components: {
+    Notification,
+  },
+
+  // all ze data
   data() {
     return {
       secret: "",
@@ -7,13 +15,27 @@ export default {
       initializationVector: "",
       encryptedBody: "",
       decryptedBody: "",
+      decryptionFailed: false,
+
+      // paths
       serverDecryptorScriptPath: "../php/decryptor.php",
+
+      // button states
+      decryptButton: {
+        isLoading: false,
+      },
     };
   },
 
+  // meth, lol
   methods: {
     async submit() {
+      // clear previously stored decrypted body
+      this.decryptedBody = "";
+      this.decryptionFailed = false;
+
       try {
+        this.decryptButton.isLoading = true;
         // fetch
         const rawResponse = await fetch(this.serverDecryptorScriptPath, {
           method: "POST",
@@ -26,11 +48,13 @@ export default {
         });
 
         // fullfill promise
-        const response = await rawResponse.text();
-
+        const response = await rawResponse.json();
         this.decryptedBody = response;
       } catch (error) {
+        this.decryptionFailed = true;
         console.error(error);
+      } finally {
+        this.decryptButton.isLoading = false;
       }
     },
   },
@@ -68,18 +92,30 @@ export default {
 
   <div class="field">
     <div class="control">
-      <a class="button is-warning" @click="submit">Decrypt</a>
+      <a
+        class="button is-warning"
+        :class="{ 'is-loading': decryptButton.isLoading }"
+        @click="submit"
+        >Decrypt</a
+      >
     </div>
   </div>
+
+  <Notification
+    notification-msg="The server failed to decrypt your data, please check your inputs and try again."
+    v-show="decryptionFailed"
+  />
 
   <div class="field" v-show="decryptedBody">
     <div class="control">
       <textarea
         cols="30"
-        rows="20"
+        rows="35"
         class="textarea is-family-monospace"
-        v-model="decryptedBody"
-      ></textarea>
+        spellcheck="false"
+        readonly
+        >{{ decryptedBody }}</textarea
+      >
     </div>
   </div>
 </template>

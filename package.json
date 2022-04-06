@@ -4,7 +4,8 @@
   "description": "",
   "source": "src/index.html",
   "scripts": {
-    "start": "parcel --dist-dir public --public-url /",
+    "start": "parcel --dist-dir public --public-url ./",
+    "watch": "parcel watch --dist-dir public --public-url ./",
     "build": "parcel build --dist-dir public --public-url ./"
   },
   "keywords": [],
