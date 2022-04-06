@@ -60,7 +60,18 @@ export default {
   },
 };
 </script>
+<style scoped>
+/* we will explain what these classes do next! */
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
 
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>
 <template>
   <div class="field">
     <label class="label">BIP Secret</label>
@@ -101,21 +112,25 @@ export default {
     </div>
   </div>
 
-  <Notification
-    notification-msg="The server failed to decrypt your data, please check your inputs and try again."
-    v-show="decryptionFailed"
-  />
+  <Transition>
+    <Notification
+      notification-msg="The server failed to decrypt your data, please check your inputs and try again."
+      v-show="decryptionFailed"
+    />
+  </Transition>
 
-  <div class="field" v-show="decryptedBody">
-    <div class="control">
-      <textarea
-        cols="30"
-        rows="35"
-        class="textarea is-family-monospace"
-        spellcheck="false"
-        readonly
-        >{{ decryptedBody }}</textarea
-      >
+  <Transition>
+    <div class="field" v-show="decryptedBody">
+      <div class="control">
+        <textarea
+          cols="30"
+          rows="35"
+          class="textarea is-family-monospace"
+          spellcheck="false"
+          readonly
+          >{{ decryptedBody }}</textarea
+        >
+      </div>
     </div>
-  </div>
+  </Transition>
 </template>
