@@ -1,7 +1,7 @@
 {
   "name": "payon-webhookbody-decryptor",
   "version": "1.0.0",
-  "description": "",
+  "description": "This tool should allow you to decrypt the webhook payload received from PAY.ON.",
   "source": "src/index.html",
   "scripts": {
     "start": "parcel --dist-dir public --public-url ./",
@@ -9,7 +9,7 @@
     "build": "parcel build --dist-dir public --public-url ./"
   },
   "keywords": [],
-  "author": "",
+  "author": "Bryan Olandres",
   "license": "ISC",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.4.1",
