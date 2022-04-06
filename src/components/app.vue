@@ -62,8 +62,16 @@ export default {
       }
     },
   },
+
+  computed: {
+    // formats json to string with proper line breaks and indentation to display as pretty json format in textarea
+    prettyPrintResponse() {
+      return JSON.stringify(this.decryptedBody, undefined, 2);
+    },
+  },
 };
 </script>
+
 <style scoped>
 /* we will explain what these classes do next! */
 .v-enter-active,
@@ -76,6 +84,7 @@ export default {
   opacity: 0;
 }
 </style>
+
 <template>
   <div class="field">
     <label class="label">BIP Secret</label>
@@ -132,8 +141,8 @@ export default {
           class="textarea is-family-monospace"
           spellcheck="false"
           readonly
-          >{{ decryptedBody }}</textarea
-        >
+          v-model="prettyPrintResponse"
+        ></textarea>
       </div>
     </div>
   </Transition>
