@@ -19,6 +19,7 @@ export default {
 
       // paths
       serverDecryptorScriptPath: "../php/decryptor.php",
+      serverDecryptorScriptPathHosted: "./php/decryptor.php", // in goDaddy's hosting, we put public folder contents in the root so the php folder is in the same directory
 
       // button states
       decryptButton: {
